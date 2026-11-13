@@ -42,9 +42,9 @@ public class ConsoleUI {
 
     """);
     }
-    public static void main(String[] args) {
-        new ConsoleUI().displayStations();
-        new ConsoleUI().displayAdjacencyList();
-        new ConsoleUI().displayMap();
-    }
+    // public static void main(String[] args) {
+    //     new ConsoleUI().displayStations();
+    //     new ConsoleUI().displayAdjacencyList();
+    //     new ConsoleUI().displayMap();
+    // }
 }
