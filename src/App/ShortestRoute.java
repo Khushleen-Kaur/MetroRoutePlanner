@@ -1,3 +1,5 @@
+package App;
+// package src;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -9,26 +11,33 @@ import java.util.PriorityQueue;
 // TODO: Add estimated time for travel
 class Node{
     String station;
-    int distance;
-    Node(String station, int distance){
+    double distance;
+    Node(String station, double distance){
         this.station = station;
         this.distance = distance;
     }
 }
-public class ShotestRoute {
-    MetroGraph graph = new MetroGraph();
+public class ShortestRoute {
+    public ShortestRoute(){
 
-    public int shotestDistance(String sorce, String destination){
-        HashMap<String, Integer> minDistance = new HashMap<>();
+    }
+    //Assuming average speed of metro to be 75km/hr.
+    final double METRO_SPEED = 75;
+    public double estimatedTime(double distance){
+        // returns time in minutes
+        return (distance/METRO_SPEED)*60;
+    }
+    public double shotestDistance(String sorce, String destination, HashMap<String, HashMap<String, Double>> map){
+        HashMap<String, Double> minDistance = new HashMap<>();
         HashMap<String, String> parent = new HashMap<>();
         PriorityQueue<Node>  pq = new PriorityQueue<>(
-            (a,b) -> Integer.compare(a.distance, b.distance)
+            (a,b) -> Double.compare(a.distance, b.distance)
         );
 
-        for(Map.Entry<String, HashMap<String,Integer>> station : graph.map.entrySet() ){
-            minDistance.put(station.getKey(), Integer.MAX_VALUE);
+        for(Map.Entry<String, HashMap<String,Double>> station : map.entrySet() ){
+            minDistance.put(station.getKey(), Double.MAX_VALUE);
         }
-        minDistance.put(sorce, Integer.MAX_VALUE);
+        minDistance.put(sorce, Double.MAX_VALUE);
         
         pq.offer(new Node(sorce, 0));
         while(!pq.isEmpty()){
@@ -36,7 +45,7 @@ public class ShotestRoute {
             if(current.distance > minDistance.get(current.station)){
                 continue;
             }
-            for(Map.Entry<String, Integer> neighbour : graph.map.get(current.station).entrySet()){
+            for(Map.Entry<String, Double> neighbour : map.get(current.station).entrySet()){
                 if(neighbour.getValue() + current.distance < minDistance.get(neighbour.getKey())){
                     minDistance.put(neighbour.getKey(), neighbour.getValue() + current.distance);
                     parent.put(neighbour.getKey(), current.station);
@@ -51,7 +60,7 @@ public class ShotestRoute {
         while(parent.containsKey(route.get(0)) && !route.get(0).equals(sorce)){
             route.add(0, parent.get(route.get(0)));
         }
-
+        System.out.println("\n-------- Travelling Details ---------");
         System.out.println("Sorce: " + sorce);
         System.out.println("Destination: " + destination);
         if(route.size() == 1){
@@ -59,17 +68,15 @@ public class ShotestRoute {
             System.out.println("Try with other Location.");
         }else{
             System.out.println("Minimum Distance is: " + minDistance.get(destination) + " km");
+            System.out.println("Estimated time: " + estimatedTime(minDistance.get(destination)) + " mins");
             System.out.print("Metro route: ");
             int i = 0;
             for(i = 0; i< route.size() - 1 ; i++){
                 System.out.print(route.get(i) + " -> ");
             }
-            System.out.print(route.get(i));
+            System.out.print(route.get(i) + "\n");
         }
         return minDistance.get(destination);
     }
-    public static void main(String[] args) {
-        ShotestRoute s = new ShotestRoute();
-        s.shotestDistance("Khandeshwar", "Nerul");
-    }
+
 }

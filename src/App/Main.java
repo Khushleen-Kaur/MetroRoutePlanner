@@ -1,0 +1,44 @@
+package App;
+import java.util.Scanner;
+import java.util.InputMismatchException;
+import StandardMap.StandardMenu;
+
+public class Main {
+    Scanner sc = new Scanner(System.in);
+    StandardMenu sm = new StandardMenu();
+    public void menu(){
+        while (true) { 
+            System.out.println("-----------------------------------------------------");
+            System.out.println("    Welcome to Metrovia - Smart metro navigation");
+            System.out.println("-----------------------------------------------------");
+            System.out.println("Select preference for map: ");
+            System.out.println("1. Standard Map");
+            System.out.println("2. Personalised Map");
+            System.out.println("3. Exit");
+            System.out.print("Enter Choice: ");
+            try {
+                int choice = sc.nextInt();
+                if(choice == 3){
+                    System.out.println("Thank you...");
+                    System.out.println("Exiting Metrovia...");
+                    break;
+                }
+                switch(choice){
+                    case 1:
+                        sm.standardMenu();
+                        break;
+                    case 2:
+                        break;
+                    default:
+                        System.out.println("Please, Enter a valid chioce between 1 - 3.");
+                }
+            } catch (InputMismatchException e) {
+                System.out.println("Please enter a valid type of data..");
+            }
+            
+        }
+    }
+    public static void main(String[] args) {
+        new Main().menu();
+    }
+}
