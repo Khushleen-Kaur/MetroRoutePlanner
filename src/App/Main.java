@@ -1,11 +1,13 @@
 package App;
-import java.util.Scanner;
-import java.util.InputMismatchException;
+import PersonalizedMap.PersonalizedMenu;
 import StandardMap.StandardMenu;
+import java.util.InputMismatchException;
+import java.util.Scanner;
 
 public class Main {
     Scanner sc = new Scanner(System.in);
     StandardMenu sm = new StandardMenu();
+    PersonalizedMenu pm = new PersonalizedMenu();
     public void menu(){
         while (true) { 
             System.out.println("-----------------------------------------------------");
@@ -28,6 +30,7 @@ public class Main {
                         sm.standardMenu();
                         break;
                     case 2:
+                        pm.personalizedMenu();
                         break;
                     default:
                         System.out.println("Please, Enter a valid chioce between 1 - 3.");

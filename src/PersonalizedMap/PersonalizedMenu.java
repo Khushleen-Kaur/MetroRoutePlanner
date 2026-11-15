@@ -1,9 +1,8 @@
 package PersonalizedMap;
 
-import java.util.Scanner;
 import App.ShortestRoute;
-
 import java.util.InputMismatchException;
+import java.util.Scanner;
 
 public class PersonalizedMenu {
 Scanner sc = new Scanner(System.in);
@@ -29,13 +28,13 @@ Scanner sc = new Scanner(System.in);
             try {
                 int choice = sc.nextInt();
                 if(choice == 5){
-                    System.out.println("\nExiting Standard Maps...");
+                    System.out.println("\nExiting Personalized Maps...");
                     System.out.println("Back to Main menu...\n");
                     break;
                 }
                 switch(choice){
                     case 1:
-                        graph.createGraph();
+                        new PersonalizedGraph().createGraph();
                         break;
                     case 2:
                         mapui.displayStations();
@@ -59,11 +58,13 @@ Scanner sc = new Scanner(System.in);
                         shortest.shotestDistance( s, d, graph.personalizedMap);
                         break;
                     default:
-                        System.out.println("Please, Enter a valid choice between 1 to 5.");
-                        break;
+                        // System.out.println("Please, Enter a valid choice between 1 to 5.");
+                        throw new Exception("Please, Enter a valid choice between 1 to 5.");
                 }
             } catch (InputMismatchException e) {
                 System.out.println("Please, Enter a valid value...");
+            } catch (Exception e) {
+                System.out.println(e.getLocalizedMessage());
             }
         }
     }

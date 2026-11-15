@@ -24,7 +24,4 @@ public class PersonalizedMapUI {
             }
         }
     }
-    public static void main(String[] args) {
-        new PersonalizedMapUI().displayAdjacencyList();
-    }
 }
