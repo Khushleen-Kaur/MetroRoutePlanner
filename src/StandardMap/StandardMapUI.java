@@ -3,6 +3,7 @@ package StandardMap;
 import java.util.HashMap;
 import java.util.Map;
 
+// Helper class to - Displays stations, neighbours, adjacency list and a text map.
 public class StandardMapUI {
     StandardGraph graph = new StandardGraph();
     public void displayStations(){
@@ -42,9 +43,4 @@ public class StandardMapUI {
 
     """);
     }
-    // public static void main(String[] args) {
-    //     new StandardMapUI().displayStations();
-    //     new StandardMapUI().displayAdjacencyList();
-    //     new StandardMapUI().displayMap();
-    // }
 }

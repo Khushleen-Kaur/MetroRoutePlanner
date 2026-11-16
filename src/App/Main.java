@@ -4,10 +4,12 @@ import StandardMap.StandardMenu;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
+// Main class - Displays the top level menu and opens the selected map mode.
 public class Main {
     Scanner sc = new Scanner(System.in);
     StandardMenu sm = new StandardMenu();
     PersonalizedMenu pm = new PersonalizedMenu();
+
     public void menu(){
         while (true) { 
             System.out.println("-----------------------------------------------------");
@@ -18,6 +20,7 @@ public class Main {
             System.out.println("2. Personalised Map");
             System.out.println("3. Exit");
             System.out.print("Enter Choice: ");
+            // Using try and catch for Exception handeling (InputMismatchException)
             try {
                 int choice = sc.nextInt();
                 if(choice == 3){
@@ -42,6 +45,7 @@ public class Main {
         }
     }
     public static void main(String[] args) {
+        // Creating unreferenced object to execute the menu method 
         new Main().menu();
     }
 }

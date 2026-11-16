@@ -4,6 +4,7 @@ import App.ShortestRoute;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
+// Provides personalised-map operations and invokes route calculation.
 public class PersonalizedMenu {
 Scanner sc = new Scanner(System.in);
 

@@ -9,6 +9,8 @@ import java.util.PriorityQueue;
 // TODO: Isolation station exception
 // TODO: Custom Map and dynamic map creation
 // TODO: Add estimated time for travel
+
+// Node class - for Priority queue  
 class Node{
     String station;
     double distance;
@@ -19,27 +21,35 @@ class Node{
 }
 public class ShortestRoute {
     public ShortestRoute(){
-
+        
     }
-    //Assuming average speed of metro to be 75km/hr.
+    // Assuming average speed of metro to be 75km/hr.
     final double METRO_SPEED = 75;
     public double estimatedTime(double distance){
         // returns time in minutes
         return (distance/METRO_SPEED)*60;
     }
-    public double shotestDistance(String sorce, String destination, HashMap<String, HashMap<String, Double>> map){
+
+    // Method for calculating shortest distance using Dijkstra algo 
+    public double shotestDistance(String source, String destination, HashMap<String, HashMap<String, Double>> map){
+        // Hashmap to store station and its relative distances
         HashMap<String, Double> minDistance = new HashMap<>();
+        // Hashmap to store parent and child, so traverse back the route
         HashMap<String, String> parent = new HashMap<>();
+        // Priority Queue which uses min heap for shortest distance
         PriorityQueue<Node>  pq = new PriorityQueue<>(
             (a,b) -> Double.compare(a.distance, b.distance)
         );
 
+        // Setting all station distance to infinity
         for(Map.Entry<String, HashMap<String,Double>> station : map.entrySet() ){
             minDistance.put(station.getKey(), Double.MAX_VALUE);
         }
-        minDistance.put(sorce, Double.MAX_VALUE);
-        
-        pq.offer(new Node(sorce, 0));
+        // Setting source station distance to 0
+        minDistance.put(source, 0.0);
+        pq.offer(new Node(source, 0));
+
+        // Calculating min distance of each node from source
         while(!pq.isEmpty()){
             Node current = pq.poll();
             if(current.distance > minDistance.get(current.station)){
@@ -53,15 +63,19 @@ public class ShortestRoute {
                 }
             }
         }
+
+        // Tracking route back to source
         List<String> route = new ArrayList<>();
         route.add(0, destination);
 
 
-        while(parent.containsKey(route.get(0)) && !route.get(0).equals(sorce)){
+        while(parent.containsKey(route.get(0)) && !route.get(0).equals(source)){
             route.add(0, parent.get(route.get(0)));
         }
+        
+        // Displaying travelling details
         System.out.println("\n-------- Travelling Details ---------");
-        System.out.println("Sorce: " + sorce);
+        System.out.println("Source: " + source);
         System.out.println("Destination: " + destination);
         if(route.size() == 1){
             System.out.println("Route don't Exist.");
@@ -76,6 +90,8 @@ public class ShortestRoute {
             }
             System.out.print(route.get(i) + "\n");
         }
+
+        // Returning the min distance of destination from source
         return minDistance.get(destination);
     }
 

@@ -2,7 +2,9 @@ package StandardMap;
 
 import java.util.HashMap;
 
+// Initialises the predefined weighted metro graph.
 public class StandardGraph{
+    // Stores the standardGraph.
     public HashMap<String, HashMap<String, Double>> map = new HashMap<>(); 
     
     public StandardGraph(){

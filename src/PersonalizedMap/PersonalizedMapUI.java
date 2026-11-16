@@ -3,6 +3,7 @@ package PersonalizedMap;
 import java.util.HashMap;
 import java.util.Map;
 
+// Helper class to - Displays stations, neighbours, adjacency list and a text map.
 public class PersonalizedMapUI {
     PersonalizedGraph graph = new PersonalizedGraph();
     public void displayAdjacencyList(){

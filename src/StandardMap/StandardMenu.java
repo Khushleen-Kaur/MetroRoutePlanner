@@ -1,9 +1,10 @@
 package StandardMap;
 
-import java.util.Scanner;
 import App.ShortestRoute;
 import java.util.InputMismatchException;
+import java.util.Scanner;
 
+// Provides standard-map menu operations and calls route calculation.
 public class StandardMenu {
     Scanner sc = new Scanner(System.in);
 
@@ -61,6 +62,8 @@ public class StandardMenu {
                         System.out.println("Please, Enter a valid choice between 1 to 5.");
                         break;
                 }
+
+            // Exception handeling
             } catch (InputMismatchException e) {
                 System.out.println("Please, Enter a valid value...");
             }

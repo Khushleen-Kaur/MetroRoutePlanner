@@ -4,10 +4,13 @@ import java.util.HashMap;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
+// Accepts user input and builds a personalised graph.
 public class PersonalizedGraph {
+    // static personalizedMap so that it is common to all the objects of this class
     static HashMap<String, HashMap<String, Double>> personalizedMap= new HashMap<>();
     Scanner sc = new Scanner(System.in);
     
+    // Method to create graph by taking user inputs.
     public void createGraph(){
         personalizedMap.clear();
         System.out.println("Start creating your own Map!");
@@ -35,6 +38,7 @@ public class PersonalizedGraph {
                 personalizedMap.put(stationName, n);
                 stations--;
             }
+        // Exception Handeling
         }catch(InputMismatchException e){
             System.out.println("Please enter a valid data..\n" + e);
             System.out.println("The map could not be generated.");
